@@ -1,6 +1,5 @@
 @extends('layouts.frontend')
 @section('content')
-
   <div class="p-4 p-md-5 mb-4 rounded text-bg-dark">
     <div class="col-md-6 px-0">
       <h1 class="display-4 fst-italic">What is Web Development</h1>
@@ -9,19 +8,17 @@
 </div>
 <div class="row mb-2">
     @foreach ($posts as $post)
-    <div class="col-md-6">
-        <div class="card flex-md-row mb-4 box-shadow">
-          <div class="card-body d-flex flex-column align-items-start">
-           <img src="{{asset('thumbnails/1678024719.png')}}" alt="" class="img-thumbnail">
-          <h3 class="mb-0 mt-2">{{$post->title}}</h3>
-          <div class="mb-1 text-muted">{{date('Y-m-d',strtotime($post->created_at))}}</div>
-          <p class="card-text mb-auto">{{$post->description}}</p>
-          <a href="{{ route ('posts.show',$post->id)}}" class="stretched-link">Continue reading</a>
-        </div>
+    <div class="col-md-4">
+     <div class="card flex-md-row mb-2 box-shadow">
+        <div class="card-body d-flex flex-column align-items-start">
+            <img src="{{ asset('thumbnails/'. $post->thumbnail) }}" class="img-fluid" style="max-height:5cm; max-width:10cm;"alt="Responsive image">
+        <h5 class="card-title">{{ $post->title }}</h5>
+        <p class="card-text">{{ $post->user_name}}</p>
+        <a href="{{ route('posts.show', $post->id) }}" class="card-link stretched-link">View More</a>
+        <p class="card-text">{{ date('Y-m-d', strtotime($post->created_at)) }}</p>
       </div>
+     </div>
     </div>
      @endforeach
-  </div>
-
-
+</div>
 @endsection

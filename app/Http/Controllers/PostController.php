@@ -10,7 +10,7 @@ class PostController extends Controller{
         $validator = Validator::make($request->all(),[
             'title' => 'required',
             'description' => 'required',
-            'thumbnail' => 'required|image'
+            'thumbnail' => 'required|image',
         ]);
         if ($validator->fails()){
             return back ()->with('status','something went wrong!');
